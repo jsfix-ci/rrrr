@@ -1,9 +1,10 @@
 {
   "name": "rrrr",
-  "version": "0.1.0",
+  "version": "0.1.5",
   "description": "React Redux Router Wrapper for easily composing React components attached to react-router and react-redux, without repeated / confusing boilerplate",
-  "main": "dist/rrrr.js",
+  "main": "build/index.js",
   "scripts": {
+    "build": "BABEL_ENV=production NODE_ENV=production babel --source-maps inline --out-dir ./build/ ./src/",
     "dev": "nodemon -L --require babel-register --watch ./config/ --watch ./src/ --watch ./test/ --exec 'npm run lint:dev && npm run test'",
     "lint": "eslint ./config/ ./src/ ./test/",
     "lint:dev": "eslint -c .eslintrc.dev.json ./config/ ./src/ ./test/",

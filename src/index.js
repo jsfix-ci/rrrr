@@ -1,7 +1,7 @@
 // @package App
 
-import compose from 'Compose';
-import create, { getHistory, getStore } from 'Create';
+import compose from './compose';
+import create, { getHistory, getStore } from './create';
 import reducer from './reducer';
 
 export {
