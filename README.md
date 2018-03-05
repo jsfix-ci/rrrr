@@ -2,7 +2,7 @@
 
 ## Installation
 
-    $ npm install --save react-router-dom
+    $ npm install --save rrrr
 
 ## Technologies
 
