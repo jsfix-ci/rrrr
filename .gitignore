@@ -1,0 +1,16 @@
+.DS_Store
+
+logs
+*.log
+
+pids
+
+coverage
+
+node_modules/
+
+.npm
+
+.env
+
+dist/
