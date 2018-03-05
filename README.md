@@ -19,6 +19,8 @@ Configuring and maintaining a `react` application with the two most popular libr
 
 ## Usage
 
+View a working code example here: https://github.com/dwjft/rrrr-example
+
 A lot of the boilerplate required by `react-redux` has been removed, and a cleaner, more powerful out-of-the-box API has been provided. A lot of great work has gone in to making `react-redux` work under the hood, and we preserve that great work, but the boilerplate surrounding a `react-redux` system gets wildly out of control very fast. This package will also handle `async` actions by default.
 
 ### Basic Example
