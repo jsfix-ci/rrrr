@@ -23,60 +23,6 @@ View a working code example here: https://github.com/dwjft/rrrr-example
 
 A lot of the boilerplate required by `react-redux` has been removed, and a cleaner, more powerful out-of-the-box API has been provided. A lot of great work has gone in to making `react-redux` work under the hood, and we preserve that great work, but the boilerplate surrounding a `react-redux` system gets wildly out of control very fast. This package will also handle `async` actions by default.
 
-### Basic Example
-
-```javascript
-// ./setup.js
-import React from 'react';
-import ReactDOM from 'react-dom';
-import { create } from 'rrrr';
-import defaultReduxState from './defaultReduxState'; // our default state of the application at load time
-import Index from './Index'; // our entry point to the react application
-
-ReactDOM.render(
-  create(defaultReduxState, Index),
-  document.getElementById('root'),
-);
-```
-
-```javascript
-// ./Index.js
-import React from 'react';
-import { compose } from 'rrrr';
-
-class Index extends React.Component {
-  componentDidMount() {
-    // if you want to see the full definition of the props object while developing
-    console.log(this.props);
-  }
-  render() {
-    return (
-      <div>
-        <h1>Hello {this.props.storeProps.message}!</h1>
-        <button onClick={this.props.storeActions.syncAction}>Click me!</button>
-        <button onClick={this.props.storeActions.asyncAction}>Click me!</button>
-      </div>
-    )
-  }
-}
-
-// see the below url to understand how `props` and `actions` are used internally by the react-redux `connect` function
-// https://github.com/reactjs/react-redux/blob/master/docs/api.md#connectmapstatetoprops-mapdispatchtoprops-mergeprops-options
-const props = () => ({ message: 'world!' });
-const actions = () => {
-  asyncAction: {
-    action: new Promise((resolve) => {
-      setTimeout(resolve, 5000);
-    }),
-    end: () => ({ message: 'mars!' }),
-    start: () => ({ message: 'loading content...' }),
-  },
-  syncAction: () => ({ message: 'moon!' }),
-};
-
-export default compose(Index, { actions, props });
-```
-
 ## Props
 
 By default, all `React` components are built with a `props` object. These fields represent the data passed in to the component allowing you to display dynamic / re-usable content.
@@ -103,7 +49,7 @@ A synchronous action will operate in real-time, and manipulate the `react-redux`
 To define a syncronous function, simply pass in a function through the `actions` compose config paramater, and call it via `props.storeActions.actionName`.
 
 ```javascript
-// storeActions.sync('foo', 'bar', 'baz');
+// props.storeActions.sync('foo', 'bar', 'baz');
 
 const actions = {
   sync: (foo, bar, baz) => ({ foo, bar, baz }),
@@ -119,7 +65,7 @@ An asynchronous action refers to the action you are performing, which in most ca
 Unlike defining a synchronous function as a function, you would define your asynchronous action as an object, with the `action` key.
 
 ```javascript
-// storeActions.asyncExample(foo, bar, baz);
+// props.storeActions.asyncExample('foo', 'bar', 'baz');
 
 const asyncExample = {
   action: (foo, bar, baz) => doSomethingAsynchronously(foo, bar, baz),
